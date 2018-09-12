@@ -7,6 +7,7 @@
 #define NORMAL_ARRAY   0x0004
 #define TEXCOORD_ARRAY 0x0008
 
+//! draw 元素
 void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid *indices) {
     glBegin(mode);
     if (type != GL_UNSIGNED_SHORT) {
@@ -14,7 +15,7 @@ void glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid *indic
     }
     const GLshort *shorts = indices;
     for (int i = 0; i < count; i++) {
-        glArrayElement(shorts[i]);
+        glArrayElement(shorts[i]);                   //! 根据索引draw 元素
     }
     glEnd();
 }
@@ -27,6 +28,7 @@ void glDrawArrays(GLenum mode, GLint first, GLsizei count) {
     glEnd();
 }
 
+//! 
 void glArrayElement(GLint idx) {
     GLContext *c = gl_get_context();
     int i;

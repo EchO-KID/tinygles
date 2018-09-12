@@ -221,14 +221,14 @@ void gl_draw_triangle(GLContext *c, GLVertex *p0, GLVertex *p1, GLVertex *p2) {
         front = front ^ c->current_front_face;
 
         /* back face culling */
-        if (c->cull_face_enabled) {
+        if (c->cull_face_enabled) {                  //! 剔除 面
             /* most used case first */
             if (c->current_cull_face == GL_BACK) {
                 if (front == 0) return;
-                c->draw_triangle_front(c, p0, p1, p2);
+                c->draw_triangle_front(c, p0, p1, p2);            //! draw 三角形 front
             } else if (c->current_cull_face == GL_FRONT) {
                 if (front != 0) return;
-                c->draw_triangle_back(c, p0, p1, p2);
+                c->draw_triangle_back(c, p0, p1, p2);             //! draw 三角形 back
             } else {
                 return;
             }

@@ -97,7 +97,7 @@ int ui_loop(int argc, char **argv, const char *name)
       XNextEvent(dpy,&xev);
       switch(xev.type) {
       case KeyPress:
-	XLookupString((XKeyEvent *)&xev,buf,80,&keysym,&status);
+	       XLookupString((XKeyEvent *)&xev,buf,80,&keysym,&status);
         switch(keysym) {
         case XK_Up:
             k = KEY_UP;
@@ -124,8 +124,8 @@ int ui_loop(int argc, char **argv, const char *name)
 	  int width,height;
 	  width = xev.xconfigure.width;
 	  height = xev.xconfigure.height;
-	  glXWaitX();
-          reshape(width, height);
+	  glXWaitX();                              //! do nothing?
+    reshape(width, height);
 	}
 	break;
       }

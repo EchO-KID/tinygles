@@ -54,6 +54,7 @@ void gl_eval_viewport(GLContext * c) {
     v->scale.Z = -((zsize - 0.5) / 2.0);
 }
 
+//! type: 绘制类型
 void glBegin(GLenum type) {
     GLContext *c = gl_get_context();
     M4 tmp;
@@ -168,6 +169,7 @@ static inline void gl_vertex_transform(GLContext *c, GLVertex *v) {
     v->clip_code = gl_clipcode(v->pc.X, v->pc.Y, v->pc.Z, v->pc.W);
 }
 
+//! 顶点
 void glVertex4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
     GLContext *c = gl_get_context();
     GLVertex *v;
@@ -175,7 +177,7 @@ void glVertex4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
 
     assert(c->in_begin != 0);
 
-    n = c->vertex_n;
+    n   = c->vertex_n;
     cnt = c->vertex_cnt;
     cnt++;
     c->vertex_cnt = cnt;
@@ -310,11 +312,11 @@ void glEnd() {
     GLContext *c = gl_get_context();
     assert(c->in_begin == 1);
 
-    if (c->begin_type == GL_LINE_LOOP) {
+    if (c->begin_type == GL_LINE_LOOP) {                            //! begin 类型：线
         if (c->vertex_cnt >= 3) {
             gl_draw_line(c, &c->vertex[0], &c->vertex[2]);
         }
-    } else if (c->begin_type == GL_POLYGON) {
+    } else if (c->begin_type == GL_POLYGON) {                       //! begin 类型：多边形
         int i = c->vertex_cnt;
         while (i >= 3) {
             i--;

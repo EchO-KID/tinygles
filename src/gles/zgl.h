@@ -160,10 +160,10 @@ typedef void (*gl_draw_triangle_func)(struct GLContext *c, GLVertex *p0, GLVerte
 /* display context */
 typedef struct GLContext {
     /* Z buffer */
-    ZBuffer *zb;
+    ZBuffer *zb;                   //! 送到屏幕buffer 
 
     /* shared state */
-    GLSharedState shared_state;
+    GLSharedState shared_state;    //! gl 状态
 
     /* viewport */
     GLViewport viewport;
@@ -182,7 +182,7 @@ typedef struct GLContext {
 
     /* materials */
     struct {
-        GLMaterial materials[2];
+        GLMaterial materials[2];            //!  材质
         struct {
             int enabled;
             int current_mode;
@@ -192,8 +192,8 @@ typedef struct GLContext {
 
     /* textures */
     struct {
-        GLTexture *current;
-        int enabled_2d;
+        GLTexture *current;                //! 当前纹理
+        int enabled_2d;                    //! 2d 标志
     } texture;
 
     /* current list */
@@ -233,7 +233,7 @@ typedef struct GLContext {
     } clear;
 
     /* glBegin / glEnd */
-    int in_begin;
+    int in_begin;                  
     int begin_type;
     int vertex_n, vertex_cnt;
     int vertex_max;
@@ -277,7 +277,7 @@ typedef struct GLContext {
     int (*gl_resize_viewport)(struct GLContext *c, int *xsize, int *ysize);
 
     /* depth test */
-    int depth_test;
+    int depth_test;          //! 深度测试
 
     struct {
         int dfactor;
@@ -328,7 +328,7 @@ void gl_resizeImageNoInterpolate(unsigned char *dest, int xsize_dest, int ysize_
 
 GLContext *gl_get_context(void);
 
-void glClose(void);
+void glClose(void);             //! close gl?
 void glInit(void *zbuffer1);
 
 /* specular buffer "api" */
